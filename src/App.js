@@ -56,7 +56,7 @@ class App extends Component {
             </Form.Group>
 
             <Button variant="success" type="submit">
-              ลงทะเบียนรับข้อมูล
+              ลงทะเบียนรับข้อมูลนะจ้ะ
             </Button>
           </Form>
         </header>
