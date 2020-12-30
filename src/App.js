@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const liff = window.liff;
 
@@ -6,11 +8,11 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       name: '',
       userLineID: '',
-      pictureUrl: ''
+      pictureUrl: '',
+      citizen_id: "",
     };
   }
 
@@ -22,6 +24,7 @@ class App extends Component {
         name: getProfile.displayName,
         userLineID: getProfile.userId,
         pictureUrl: getProfile.pictureUrl,
+        citizen_id: 1
       });
     }else{
       liff.login();
@@ -32,28 +35,30 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <form>
-          <img className="img img-circle" width="150" alt='pic' src={this.state.pictureUrl} />
-          <p>
-            <label>
-              ชื่อ-นามสกุล:
-              <input className="form-control" type="text" name="name" value={this.state.name}/>
-            </label>
-            </p>
-            <p>
-            <label>
-              เลขบัตรประชาชน:
-              <input className="form-control" type="text" name="citizen_id"/>
-            </label>
-            </p>
-            <p>
-            <label>
-              LineID:
-              <input className="form-control" type="text" name="line_id" value={this.state.userLineID}/>
-            </label>
-            </p>
-            <input type="submit" className="btn btn-success" value="ลงทะเบียน" />
-          </form>
+          <img className="img img-circle" width="150" src={this.state.pictureUrl} />
+          <Form>
+            <Form.Group controlId="form-name">
+              <Form.Label>ชื่อ-นามสกุล</Form.Label>
+              <Form.Control type="text" placeholder="ชื่อจริง - นามสกุล" value={this.state.name}/>
+            </Form.Group>
+
+            <Form.Group controlId="form-citizen-id">
+              <Form.Label>เลขบัตรประชาชน</Form.Label>
+              <Form.Control type="text" autofocus placeholder="เลขบัตรประชนชน 13 หลัก" />
+              <Form.Text className="text-muted">
+                กรุณากรอกเลขบัตรประชาชนให้ตรงกับในระบบ
+              </Form.Text>
+            </Form.Group>
+
+            <Form.Group controlId="form-name">
+              <Form.Label>UUID</Form.Label>
+              <Form.Control type="text" value={this.state.userLineID}/>
+            </Form.Group>
+
+            <Button variant="success" type="submit">
+              ลงทะเบียนรับข้อมูล
+            </Button>
+          </Form>
         </header>
       </div>
     );
